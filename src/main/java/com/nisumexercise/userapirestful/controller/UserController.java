@@ -6,6 +6,8 @@ import com.nisumexercise.userapirestful.exception.ResourceNotFoundException;
 import com.nisumexercise.userapirestful.exception.UserException;
 import com.nisumexercise.userapirestful.service.UserService;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,6 +27,10 @@ public class UserController {
 
 
     @ApiOperation("Create user")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Successfully create User"),
+            @ApiResponse(responseCode = "404", description = "Not found - The User was not found")
+    })
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ServiceResponse> createUser(@RequestBody UserRequest userRequest) {
         userRequest.setUpdate(Boolean.FALSE);
@@ -38,6 +44,10 @@ public class UserController {
     }
 
     @ApiOperation("Update user")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully update User"),
+            @ApiResponse(responseCode = "404", description = "Not found - The User was not found")
+    })
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ServiceResponse> updateUser(@RequestBody UserRequest userRequest) {
         userRequest.setUpdate(Boolean.TRUE);
@@ -53,6 +63,10 @@ public class UserController {
     }
 
     @ApiOperation("Get all users")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully get users"),
+            @ApiResponse(responseCode = "404", description = "Not found users")
+    })
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public List<ServiceResponse> getAllUsers() {
@@ -60,6 +74,10 @@ public class UserController {
     }
 
     @ApiOperation("Delete user by email")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully delete User"),
+            @ApiResponse(responseCode = "404", description = "Not found - The User was not found")
+    })
     @DeleteMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ServiceResponse> deleteUserByEmail(@RequestBody UserRequest userRequest) {
         try {
@@ -71,6 +89,10 @@ public class UserController {
     }
 
     @ApiOperation("Get user by email")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Successfully search User"),
+            @ApiResponse(responseCode = "404", description = "Not found - The User was not found")
+    })
     @GetMapping("/getUser")
     public ResponseEntity<ServiceResponse> getUserByEmail(@RequestBody UserRequest userRequest) {
         try {

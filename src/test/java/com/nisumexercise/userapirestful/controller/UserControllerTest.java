@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class UserControllerTest {
 
     private static final String USER_PATH = "/api/user";
-    private static String BEARER_TOKEN = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJSaWNhcmRvIiwiZXhwIjoxNjk1MjYxMDIxLCJpYXQiOjE2OTUyMjUwMjF9.AGeIBIlvIxG8dK9tBPpkIUjtN2BdzYfY1v1LSBcFvVY";
+    private static String BEARER_TOKEN = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJSaWNhcmRvIiwiZXhwIjoxNjk1Mjc5ODgzLCJpYXQiOjE2OTUyNDM4ODN9.0o42I6RH7QFmhXclo7s3DxpbYda8_1322YVaFoMtBYk";
 
     @Autowired
     private MockMvc mockMvc;
